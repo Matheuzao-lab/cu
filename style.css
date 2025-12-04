@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    background-color: #333; /* Fundo escuro para destacar o jogo */
+    background-color: #333; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,10 +16,10 @@ body {
     width: 90%;
     max-width: 800px;
     height: 400px;
-    background: linear-gradient(to top, #7dcfb6 0%, #0093d3 100%); /* Gradiente de céu */
+    background: linear-gradient(to top, #7dcfb6 0%, #0093d3 100%);
     border: 5px solid #000;
-    position: relative; /* Essencial para posicionar o avião e as torres */
-    overflow: hidden; /* Garante que elementos fora da área não sejam vistos */
+    position: relative;
+    overflow: hidden;
 }
 
 /* Estilo do Avião */
@@ -27,37 +27,26 @@ body {
     position: absolute;
     width: 50px;
     height: 30px;
-    font-size: 30px; /* Usando um emoji ✈️ como avião simples */
+    font-size: 30px; 
     line-height: 30px;
     text-align: center;
-    color: #fff;
-    left: 50px; /* Posição inicial no lado esquerdo */
+    background-color: rgba(255, 255, 255, 0.8); /* Fundo para o emoji */
+    border-radius: 5px;
+    left: 50px;
     top: 50%;
-    transform: translateY(-50%); /* Centraliza verticalmente */
-    transition: background-color 0.1s; /* Transição suave para feedback visual */
-    z-index: 10; /* Garante que o avião fique acima de outros elementos */
+    transform: translateY(-50%);
+    transition: background-color 0.1s;
+    z-index: 10;
 }
 
-/* Estilo das Torres */
+/* Estilo das Torres (serão geradas via JS) */
 .tower {
     position: absolute;
     width: 40px;
-    /* Altura será definida aleatoriamente pelo JavaScript para ter variedade */
-    height: 150px; 
-    background-color: #6a4025; /* Cor de tijolo/marrom */
+    background-color: #6a4025;
     border: 3px solid #4f2c1c;
-    bottom: 0; /* Começam na parte inferior do game-board */
-    /* Exemplo de posicionamento, o JavaScript vai cuidar disso */
-}
-
-#tower-1 {
-    left: 300px;
-    height: 120px;
-}
-
-#tower-2 {
-    left: 650px;
-    height: 180px;
+    bottom: 0;
+    z-index: 5;
 }
 
 /* Estilo para os Tiros/Mísseis */
@@ -65,9 +54,9 @@ body {
     position: absolute;
     width: 8px;
     height: 3px;
-    background-color: #ffcc00; /* Cor amarela para o projétil */
+    background-color: #ffcc00;
     border-radius: 50%;
-    z-index: 5; /* Abaixo do avião, mas acima do fundo */
+    z-index: 9; /* Acima das torres, abaixo do avião */
 }
 
 /* Estilo para as Instruções */
@@ -75,17 +64,21 @@ body {
     margin-top: 15px;
     color: #fff;
     font-size: 1.1em;
+    text-align: center;
 }
 
-/* Efeito de Explosão (pode ser usado quando a torre for destruída) */
+/* Efeito de Explosão */
 .explosion {
-    background-color: #ff4500; /* Laranja/Vermelho */
+    background-color: #ff4500;
     border-radius: 50%;
     animation: explode 0.5s forwards;
     opacity: 0;
+    width: 50px !important; /* Aumenta a área visual da explosão */
+    height: 50px !important;
+    transform: translate(-50%, -50%); /* Centraliza a animação */
 }
 
-/* Animação de explosão (para ser aplicada via JS) */
+/* Animação de explosão */
 @keyframes explode {
     0% { transform: scale(0.5); opacity: 1; }
     100% { transform: scale(3); opacity: 0; }
